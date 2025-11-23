@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dosens",
+  "info": {
+    "singularName": "dosen",
+    "pluralName": "dosens",
+    "displayName": "Dosen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "jabatan": {
+      "type": "string"
+    },
+    "keahlian": {
+      "type": "string"
+    },
+    "foto": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "profil": {
+      "type": "richtext"
+    }
+  }
+}
