@@ -24,3 +24,44 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ========================================= */
+/* ANIMASI TAMBAHAN (Update Baru)       */
+/* ========================================= */
+
+/* 1. Class Utility untuk Animasi */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animate-scale-in {
+  animation: scaleIn 1.2s ease-out forwards;
+  opacity: 0;
+  transform: scale(1.1); /* Mulai agak nge-zoom */
+}
+
+/* 2. Keyframes (Definisi Gerakan) */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  to { 
+    opacity: 1;
+    transform: scale(1); /* Kembali ke ukuran normal */
+  }
+}
