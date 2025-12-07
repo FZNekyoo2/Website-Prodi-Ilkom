@@ -46,6 +46,8 @@ export default function RootLayout({
               <Link href="/" className="hover:text-emerald-200 transition-colors">Beranda</Link>
               <Link href="/berita" className="hover:text-emerald-200 transition-colors">Berita</Link>
               <Link href="/dosen" className="hover:text-emerald-200 transition-colors">Dosen</Link>
+              <Link href="/alumni" className="hover:text-emerald-200 transition-colors">Alumni</Link>
+              <Link href="/akreditasi" className="hover:text-emerald-200 transition-colors">Akreditasi</Link>
             </div>
           </nav>
         </header>
