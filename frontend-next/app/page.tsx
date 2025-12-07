@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Komponen Counter (Angka Jalan) - FULL COMPONENT
+// Komponen Counter (Angka Jalan)
 function Counter({ end, label, icon }: { end: number; label: string; icon: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -42,8 +42,8 @@ function Counter({ end, label, icon }: { end: number; label: string; icon: strin
   }, [isVisible, end]);
 
   return (
-    <div ref={ref} className="text-center p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:-translate-y-2 transition-transform duration-300 hover:shadow-lg hover:border-emerald-200">
-      <div className="w-16 h-16 mx-auto bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 mb-4 text-3xl">
+    <div ref={ref} className="text-center p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:-translate-y-2 transition-transform duration-300 hover:shadow-lg hover:border-emerald-200 group">
+      <div className="w-16 h-16 mx-auto bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 mb-4 text-3xl group-hover:scale-110 transition-transform">
         {icon}
       </div>
       <div className="text-4xl font-bold text-slate-800 mb-2">{count}+</div>
@@ -52,19 +52,13 @@ function Counter({ end, label, icon }: { end: number; label: string; icon: strin
   );
 }
 
-// Komponen Ranking Baru dengan Data yang Benar
+// Komponen Ranking (EduRank)
 function UniversityRanking() {
-  // Data ranking yang benar dari EduRank (Update: March 02, 2025)
   const rankingData = {
     worldRank: 2326,
     asiaRank: 722,
     indonesiaRank: 43,
     medanRank: 2,
-    mathTeachersRank: 49,
-    educationRank: 281,
-    philosophyRank: 488,
-    alumniImpactRank: 6521,
-    nonAcademicRank: 3131,
     totalPublications: 18928,
     citations: 50322,
     lastUpdated: 'March 02, 2025',
@@ -73,29 +67,25 @@ function UniversityRanking() {
 
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Top 5 kategori terbaik
   const topCategories = [
-    { name: "Math Teachers", rank: rankingData.mathTeachersRank, total: 4268, category: "#49 dari 4.268" },
-    { name: "Education Majors", rank: rankingData.educationRank, total: 4586, category: "#281 dari 4.586" },
-    { name: "Philosophy", rank: rankingData.philosophyRank, total: 6689, category: "#488 dari 6.689" },
+    { name: "Math Teachers", rank: 49, total: 4268, category: "#49 dari 4.268" },
+    { name: "Education Majors", rank: 281, total: 4586, category: "#281 dari 4.586" },
+    { name: "Philosophy", rank: 488, total: 6689, category: "#488 dari 6.689" },
   ];
 
-  // Additional categories yang bisa di-expand
   const additionalCategories = [
-    { name: "Alumni Impact", rank: rankingData.alumniImpactRank, total: 7928, category: "#6.521 dari 7.928" },
-    { name: "Non-academic Prominence", rank: rankingData.nonAcademicRank, total: 14131, category: "#3.131 dari 14.131" },
+    { name: "Alumni Impact", rank: 6521, total: 7928, category: "#6.521 dari 7.928" },
+    { name: "Non-academic Prominence", rank: 3131, total: 14131, category: "#3.131 dari 14.131" },
   ];
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 to-emerald-900 rounded-2xl p-6 md:p-8 shadow-2xl border border-emerald-500/20 relative overflow-hidden my-12">
-      {/* Background Pattern */}
+    <div className="bg-gradient-to-br from-slate-900 to-emerald-900 rounded-2xl p-6 md:p-8 shadow-2xl border border-emerald-500/20 relative overflow-hidden my-12 animate-slide-up">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500 rounded-full -translate-y-32 translate-x-32"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500 rounded-full translate-y-24 -translate-x-24"></div>
       </div>
 
       <div className="relative z-10">
-        {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div>
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 text-sm font-semibold px-3 py-1 rounded-full mb-3">
@@ -112,7 +102,6 @@ function UniversityRanking() {
             </p>
           </div>
           
-          {/* Source Badge */}
           <a 
             href="https://edurank.org/uni/state-university-of-medan/" 
             target="_blank" 
@@ -121,15 +110,10 @@ function UniversityRanking() {
           >
             <span>Data dari</span>
             <span className="font-bold text-emerald-300">EduRank 2025</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
           </a>
         </div>
 
-        {/* Main Ranking Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {/* World Ranking Card */}
           <div className="bg-gradient-to-br from-blue-900/40 to-blue-800/30 backdrop-blur-sm rounded-xl p-5 border border-blue-500/20 group hover:border-blue-500/40 transition-all hover:-translate-y-1">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-blue-500/20 rounded-lg">
@@ -143,10 +127,8 @@ function UniversityRanking() {
               <span className="text-3xl font-bold text-white">#{rankingData.worldRank.toLocaleString()}</span>
               <span className="text-sm text-blue-300">dari 14.131</span>
             </div>
-            <div className="text-xs text-blue-300/80 mt-2">Top {((rankingData.worldRank / 14131) * 100).toFixed(1)}% Global</div>
           </div>
 
-          {/* Asia Ranking Card */}
           <div className="bg-gradient-to-br from-purple-900/40 to-purple-800/30 backdrop-blur-sm rounded-xl p-5 border border-purple-500/20 group hover:border-purple-500/40 transition-all hover:-translate-y-1">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-purple-500/20 rounded-lg">
@@ -160,10 +142,8 @@ function UniversityRanking() {
               <span className="text-3xl font-bold text-white">#{rankingData.asiaRank}</span>
               <span className="text-sm text-purple-300">dari 5.830</span>
             </div>
-            <div className="text-xs text-purple-300/80 mt-2">Top {((rankingData.asiaRank / 5830) * 100).toFixed(1)}% Asia</div>
           </div>
 
-          {/* Indonesia Ranking Card */}
           <div className="bg-gradient-to-br from-emerald-900/40 to-emerald-800/30 backdrop-blur-sm rounded-xl p-5 border border-emerald-500/20 group hover:border-emerald-500/40 transition-all hover:-translate-y-1">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-emerald-500/20 rounded-lg">
@@ -177,10 +157,8 @@ function UniversityRanking() {
               <span className="text-3xl font-bold text-white">#{rankingData.indonesiaRank}</span>
               <span className="text-sm text-emerald-300">dari 562</span>
             </div>
-            <div className="text-xs text-emerald-300/80 mt-2">Top {((rankingData.indonesiaRank / 562) * 100).toFixed(1)}% Nasional</div>
           </div>
 
-          {/* Medan Ranking Card */}
           <div className="bg-gradient-to-br from-amber-900/40 to-amber-800/30 backdrop-blur-sm rounded-xl p-5 border border-amber-500/20 group hover:border-amber-500/40 transition-all hover:-translate-y-1">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-amber-500/20 rounded-lg">
@@ -194,11 +172,9 @@ function UniversityRanking() {
               <span className="text-3xl font-bold text-white">#{rankingData.medanRank}</span>
               <span className="text-sm text-amber-300">dari 24</span>
             </div>
-            <div className="text-xs text-amber-300/80 mt-2">Peringkat ke-2 di Medan</div>
           </div>
         </div>
 
-        {/* Research & Publications */}
         <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-white/10 mb-6">
           <h3 className="text-lg font-semibold text-white mb-4">Publikasi & Penelitian</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -217,11 +193,8 @@ function UniversityRanking() {
           </div>
         </div>
 
-        {/* Top Categories */}
         <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-white/10">
           <h3 className="text-lg font-semibold text-white mb-4">Kategori Unggulan</h3>
-          
-          {/* Top 3 Categories */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {topCategories.map((category, index) => (
               <div key={index} className="bg-white/5 hover:bg-white/10 rounded-lg p-4 border border-white/5 transition-colors">
@@ -237,7 +210,6 @@ function UniversityRanking() {
             ))}
           </div>
 
-          {/* Expandable Additional Categories */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="flex items-center justify-center gap-2 w-full text-emerald-300 hover:text-emerald-200 transition-colors"
@@ -245,9 +217,7 @@ function UniversityRanking() {
             <span>{isExpanded ? 'Tutup' : 'Lihat lebih banyak kategori'}</span>
             <svg 
               className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
@@ -263,32 +233,23 @@ function UniversityRanking() {
               ))}
             </div>
           )}
-
-          {/* Footer */}
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <p className="text-slate-400 text-sm text-center">
-              Berdasarkan 3 faktor: Output penelitian, reputasi non-akademik, dan dampak alumni terkemuka
-            </p>
-          </div>
         </div>
       </div>
     </div>
   );
 }
 
-// Komponen Utama HomePage Tetap Sama
+// Komponen Utama HomePage
 export default function HomePage() {
   return (
-    // ANIMASI 1: Fade In seluruh halaman
     <main className="min-h-screen bg-white animate-fade-in">
       
       {/* 1. HERO SECTION */}
       <section className="relative h-[550px] flex items-center justify-center overflow-hidden">
-        {/* Background Image dengan Animasi Zoom */}
         <div className="absolute inset-0 bg-slate-900">
            <div className="absolute inset-0 animate-scale-in origin-center">
              <Image 
-               src="/gedung.jpg"
+               src="/gedung.jpg" 
                alt="Gedung Ilkom"
                fill
                priority
@@ -298,24 +259,20 @@ export default function HomePage() {
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          {/* Badge Prodi - Muncul Duluan */}
           <div className="animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
             <span className="inline-block py-1 px-3 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-sm font-semibold mb-4 backdrop-blur-sm">
                 Program Studi Ilmu Komputer
             </span>
           </div>
 
-          {/* Judul Besar - Muncul Kedua */}
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
             Membangun Masa Depan Digital dengan <span className="text-emerald-400 drop-shadow-lg">Kecerdasan Buatan</span>
           </h1>
 
-          {/* Deskripsi - Muncul Ketiga */}
           <p className="text-slate-200 text-lg md:text-xl mb-8 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
             Bergabunglah menjadi talenta digital unggul di bidang Artificial Intelligence dan Data Science bersama UNIMED.
           </p>
 
-          {/* Tombol - Muncul Terakhir */}
           <div className="flex gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
             <Link href="/berita" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full font-semibold transition-all shadow-lg hover:shadow-emerald-500/30 hover:-translate-y-1">
               Jelajahi Berita
@@ -327,9 +284,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. TENTANG PRODI & STATISTIK */}
+      {/* 2. TENTANG PRODI & STATISTIK (UPDATE AKREDITASI) */}
       <section className="py-20 px-4 bg-slate-50 relative z-20">
-        <div className="max-w-6xl mx-auto animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
+        <div className="max-w-7xl mx-auto animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-emerald-800 mb-4">Tentang Ilmu Komputer UNIMED</h2>
             <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full mb-6"></div>
@@ -339,8 +296,26 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Statistik Counters */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            
+            {/* KARTU SPESIAL: AKREDITASI BAIK SEKALI */}
+            <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:-translate-y-2 transition-transform duration-300 hover:shadow-lg hover:border-emerald-200 group relative overflow-hidden flex flex-col justify-center">
+               <div className="absolute top-0 right-0 w-16 h-16 bg-yellow-400/10 rounded-bl-full -mr-4 -mt-4"></div>
+               
+               <div className="w-16 h-16 mx-auto bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600 mb-4 text-3xl group-hover:scale-110 transition-transform shadow-sm">
+                 ⭐
+               </div>
+               
+               {/* Update: Teks BAIK SEKALI */}
+               <div className="text-xl font-extrabold text-slate-800 mb-2 uppercase leading-tight">
+                 BAIK SEKALI
+               </div>
+               <div className="text-slate-500 font-medium text-sm">Akreditasi Prodi</div>
+               <div className="text-xs text-emerald-600 font-bold mt-2 bg-emerald-50 inline-block px-2 py-1 rounded-full border border-emerald-100">
+                 LAM-INFOKOM
+               </div>
+            </div>
+
             <Counter end={45} label="Dosen Ahli" icon="👨‍🏫" />
             <Counter end={1250} label="Mahasiswa Aktif" icon="🎓" />
             <Counter end={89} label="Prestasi Nasional" icon="🏆" />
@@ -359,8 +334,6 @@ export default function HomePage() {
       {/* 4. VISI & MISI */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 items-start">
-          
-          {/* Bagian Visi (Kiri) */}
           <div className="lg:w-1/3 sticky top-24 animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <div className="bg-yellow-50 border-l-8 border-yellow-400 p-8 rounded-r-2xl shadow-sm hover:shadow-md transition-shadow">
               <h3 className="text-4xl font-black text-slate-800 mb-6 flex items-center gap-3">
@@ -370,7 +343,6 @@ export default function HomePage() {
                 "Menjadi program studi yang unggul pada bidang artificial intelegensi dan sains komputasi secara Nasional dan mendapat pengakuan Internasional."
               </p>
             </div>
-            
              <div className="mt-8 relative h-64 w-full rounded-2xl overflow-hidden shadow-lg hidden lg:block hover:scale-105 transition-transform duration-500">
                 <Image 
                   src="/visimisi.jpg"
@@ -381,13 +353,11 @@ export default function HomePage() {
              </div>
           </div>
 
-          {/* Bagian Misi (Kanan) */}
           <div className="lg:w-2/3">
             <h3 className="text-3xl font-bold text-emerald-800 mb-8 flex items-center gap-3">
               <span className="bg-emerald-600 text-white px-4 py-1 rounded-lg text-xl shadow-lg">MISI</span>
               <span>Program Studi</span>
             </h3>
-
             <div className="space-y-6">
               {[
                   { color: "bg-orange-100 text-orange-600", text: "Menyelenggarakan pendidikan dan pembelajaran ilmu komputer berfokus pada bidang artificial intelegensi dan sains komputasi yang bermutu dan bernuansa link and match dengan kebutuhan stakeholder." },
@@ -415,13 +385,11 @@ export default function HomePage() {
       {/* 5. FASILITAS UNGGULAN */}
       <section className="py-20 px-4 bg-emerald-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-        
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-12 animate-slide-up">
             <h2 className="text-3xl font-bold mb-4">Fasilitas Penunjang</h2>
             <p className="text-emerald-200">Mendukung proses pembelajaran dengan teknologi terkini.</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
                 { icon: "🖥️", title: "Lab Artificial Intelligence", desc: "Komputer spesifikasi tinggi dengan GPU untuk training model Deep Learning dan Machine Learning." },
