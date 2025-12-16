@@ -124,7 +124,7 @@ function UniversityRanking() {
               <span className="text-sm text-blue-200 font-medium">Dunia</span>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-white">#{rankingData.worldRank.toLocaleString()}</span>
+              <span className="text-3xl font-bold text-white">#{rankingData.worldRank.toLocaleString("id-ID")}</span>
               <span className="text-sm text-blue-300">dari 14.131</span>
             </div>
           </div>
@@ -179,11 +179,11 @@ function UniversityRanking() {
           <h3 className="text-lg font-semibold text-white mb-4">Publikasi & Penelitian</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-1">{rankingData.totalPublications.toLocaleString()}</div>
+              <div className="text-3xl font-bold text-white mb-1">{rankingData.totalPublications.toLocaleString("id-ID")}</div>
               <div className="text-sm text-slate-300">Publikasi Akademik</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-1">{rankingData.citations.toLocaleString()}</div>
+              <div className="text-3xl font-bold text-white mb-1">{rankingData.citations.toLocaleString("id-ID")}</div>
               <div className="text-sm text-slate-300">Kutipan Penelitian</div>
             </div>
             <div className="text-center">
