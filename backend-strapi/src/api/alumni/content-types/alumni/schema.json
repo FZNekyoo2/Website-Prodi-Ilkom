@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alumnis",
+  "info": {
+    "singularName": "alumni",
+    "pluralName": "alumnis",
+    "displayName": "Alumni"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nama": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nama",
+      "required": true
+    },
+    "foto": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "perusahaan": {
+      "type": "string",
+      "required": true
+    },
+    "foto_perusahaan": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "jabatan": {
+      "type": "string"
+    },
+    "tahun_lulus": {
+      "type": "integer"
+    },
+    "tahun_masuk": {
+      "type": "biginteger"
+    },
+    "ringkasan": {
+      "type": "text"
+    },
+    "deskripsi_lengkap": {
+      "type": "blocks"
+    },
+    "bidang": {
+      "type": "enumeration",
+      "enum": [
+        "contoh:",
+        "Software Engineer",
+        "Data Analyst",
+        "AI Engineer",
+        "DevOps",
+        "UI/UX",
+        "Akademisi"
+      ]
+    },
+    "bidang_keahlian": {
+      "type": "string"
+    },
+    "pencapaian": {
+      "type": "string"
+    },
+    "deskripsi_perusahaan": {
+      "type": "text"
+    },
+    "testimoni": {
+      "type": "blocks"
+    },
+    "email": {
+      "type": "email"
+    },
+    "linkedin": {
+      "type": "string"
+    }
+  }
+}

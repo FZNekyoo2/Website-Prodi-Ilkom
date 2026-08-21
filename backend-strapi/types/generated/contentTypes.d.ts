@@ -430,6 +430,60 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAlumniAlumni extends Struct.CollectionTypeSchema {
+  collectionName: 'alumnis';
+  info: {
+    displayName: 'Alumni';
+    pluralName: 'alumnis';
+    singularName: 'alumni';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bidang: Schema.Attribute.Enumeration<
+      [
+        'contoh:',
+        'Software Engineer',
+        'Data Analyst',
+        'AI Engineer',
+        'DevOps',
+        'UI/UX',
+        'Akademisi',
+      ]
+    >;
+    bidang_keahlian: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deskripsi_lengkap: Schema.Attribute.Blocks;
+    deskripsi_perusahaan: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    foto: Schema.Attribute.Media<'images'>;
+    foto_perusahaan: Schema.Attribute.Media<'images'>;
+    jabatan: Schema.Attribute.String;
+    linkedin: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alumni.alumni'
+    > &
+      Schema.Attribute.Private;
+    nama: Schema.Attribute.String & Schema.Attribute.Required;
+    pencapaian: Schema.Attribute.String;
+    perusahaan: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    ringkasan: Schema.Attribute.Text;
+    slug: Schema.Attribute.UID<'nama'> & Schema.Attribute.Required;
+    tahun_lulus: Schema.Attribute.Integer;
+    tahun_masuk: Schema.Attribute.BigInteger;
+    testimoni: Schema.Attribute.Blocks;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBeritaBerita extends Struct.CollectionTypeSchema {
   collectionName: 'beritas';
   info: {
@@ -1004,6 +1058,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::alumni.alumni': ApiAlumniAlumni;
       'api::berita.berita': ApiBeritaBerita;
       'api::dosen.dosen': ApiDosenDosen;
       'plugin::content-releases.release': PluginContentReleasesRelease;
